@@ -1,0 +1,13 @@
+segment_type,segment_value,view_sessions,cart_sessions,checkout_sessions,purchase_sessions,view_to_cart_rate,cart_to_checkout_rate,checkout_to_purchase_rate,view_to_purchase_rate,purchases_outside_ordered_path
+Overall,All sessions,56696,14618,5091,2668,0.2578,0.3483,0.5241,0.0471,223
+Device,desktop,33083,8468,2916,1504,0.2560,0.3444,0.5158,0.0455,123
+Device,mobile,22358,5838,2064,1103,0.2611,0.3535,0.5344,0.0493,95
+Device,tablet,1255,312,111,61,0.2486,0.3558,0.5495,0.0486,5
+First-user acquisition channel,google / organic,17442,4192,1387,696,0.2403,0.3309,0.5018,0.0399,58
+First-user acquisition channel,(direct) / (none),13006,3384,1174,602,0.2602,0.3469,0.5128,0.0463,40
+First-user acquisition channel,<Other> / <Other>,7885,1901,622,275,0.2411,0.3272,0.4421,0.0349,21
+First-user acquisition channel,<Other> / referral,5494,1395,468,255,0.2539,0.3355,0.5449,0.0464,19
+First-user acquisition channel,shop.googlemerchandisestore.com / referral,4836,1402,541,321,0.2899,0.3859,0.5933,0.0664,36
+First-user acquisition channel,(data deleted) / (data deleted),4085,1401,598,366,0.3430,0.4268,0.6120,0.0896,41
+First-user acquisition channel,google / cpc,2320,549,175,87,0.2366,0.3188,0.4971,0.0375,5
+First-user acquisition channel,<Other> / organic,1560,373,119,61,0.2391,0.3190,0.5126,0.0391,2

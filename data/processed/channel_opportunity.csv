@@ -1,0 +1,4 @@
+segment_value,view_sessions,purchase_sessions,view_to_purchase_rate,scenario_extra_purchases
+google / organic,17442,696,0.0399,126
+google / cpc,2320,87,0.0375,22
+(direct) / (none),13006,602,0.0463,11

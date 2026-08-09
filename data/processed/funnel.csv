@@ -1,0 +1,5 @@
+stage_order,stage,sessions,step_conversion_rate,dropoff_sessions,dropoff_rate
+1,Viewed product,56696,1.0,0,0.0
+2,Added to cart,14618,0.2578312402991393,42078,0.7421687597008607
+3,Started checkout,5091,0.3482692570803119,9527,0.6517307429196881
+4,Purchased,2668,0.5240620703201728,2423,0.4759379296798272

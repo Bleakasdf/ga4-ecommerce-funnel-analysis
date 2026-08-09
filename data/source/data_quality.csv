@@ -1,0 +1,17 @@
+metric,value
+source_start_date,2020-11-01
+source_end_date,2021-01-31
+source_days,92
+total_events,4295584
+users,270154
+sessions,360129
+events_without_user,0
+events_without_session_id,0
+events_without_device,0
+events_without_acquisition_source,0
+events_without_acquisition_medium,0
+analysis_start_date,2020-11-25
+analysis_end_date,2021-01-31
+analysis_days,68
+dates_without_add_to_cart,18
+last_missing_add_to_cart_date,2020-11-24

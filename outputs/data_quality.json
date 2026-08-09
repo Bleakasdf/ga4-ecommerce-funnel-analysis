@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "analysis_window": {
+    "start": "2020-11-25",
+    "end": "2021-01-31",
+    "days": 68
+  },
+  "checks": {
+    "source_has_92_days": true,
+    "identifiers_complete": true,
+    "funnel_is_monotonic": true,
+    "headline_reconciles": true,
+    "stable_window_starts_after_last_cart_gap": true,
+    "weekly_purchase_total_reconciles": true
+  },
+  "ordered_path_exclusions": {
+    "purchase_sessions_in_order": 2668,
+    "purchase_sessions_outside_ordered_path": 223,
+    "excluded_share": 0.0771
+  },
+  "caveats": [
+    "The public dataset is obfuscated and contains <Other> and deleted acquisition values.",
+    "traffic_source is first-user acquisition, not session attribution.",
+    "Category opportunity is a transparent scenario, not a causal forecast.",
+    "Category analysis stops at add_to_cart because later item-category fields are not comparable."
+  ]
+}

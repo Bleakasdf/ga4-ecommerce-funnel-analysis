@@ -1,0 +1,46 @@
+table funnel
+
+	measure 'Stage sessions' = SUM(funnel[sessions])
+		formatString: #,##0
+
+	column stage_order
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: stage_order
+
+	column stage
+		dataType: string
+		summarizeBy: none
+		sourceColumn: stage
+
+	column sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: sessions
+
+	column step_conversion_rate
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: step_conversion_rate
+
+	column dropoff_sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: dropoff_sessions
+
+	column dropoff_rate
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: dropoff_rate
+
+	partition funnel = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(#"DataFolder" & "\funnel.csv"), [Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Typed = Table.TransformColumnTypes(Headers, {{"stage_order", Int64.Type}, {"stage", type text}, {"sessions", Int64.Type}, {"step_conversion_rate", type number}, {"dropoff_sessions", Int64.Type}, {"dropoff_rate", type number}}, "en-US")
+			in
+				Typed

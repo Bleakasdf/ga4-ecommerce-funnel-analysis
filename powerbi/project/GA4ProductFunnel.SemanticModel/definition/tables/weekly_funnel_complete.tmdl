@@ -1,0 +1,50 @@
+table weekly_funnel_complete
+
+	measure 'Weekly purchase conversion' = AVERAGE(weekly_funnel_complete[view_to_purchase_rate])
+		formatString: 0.0%
+
+	column week_start
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: week_start
+
+	column view_sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: view_sessions
+
+	column cart_sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: cart_sessions
+
+	column checkout_sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: checkout_sessions
+
+	column purchase_sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: purchase_sessions
+
+	column view_to_purchase_rate
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: view_to_purchase_rate
+
+	column partial_week
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: partial_week
+
+	partition weekly_funnel_complete = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(#"DataFolder" & "\weekly_funnel_complete.csv"), [Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Typed = Table.TransformColumnTypes(Headers, {{"week_start", type date}, {"view_sessions", Int64.Type}, {"cart_sessions", Int64.Type}, {"checkout_sessions", Int64.Type}, {"purchase_sessions", Int64.Type}, {"view_to_purchase_rate", type number}, {"partial_week", type logical}}, "en-US")
+			in
+				Typed

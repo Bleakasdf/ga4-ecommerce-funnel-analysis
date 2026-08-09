@@ -1,0 +1,40 @@
+table channel_opportunity
+
+	measure 'Channel scenario opportunity' = SUM(channel_opportunity[scenario_extra_purchases])
+		formatString: #,##0
+
+	column segment_value
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment_value
+
+	column view_sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: view_sessions
+
+	column purchase_sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: purchase_sessions
+
+	column view_to_purchase_rate
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: view_to_purchase_rate
+
+	column scenario_extra_purchases
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: scenario_extra_purchases
+
+	partition channel_opportunity = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(#"DataFolder" & "\channel_opportunity.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Typed = Table.TransformColumnTypes(Headers, {{"segment_value", type text}, {"view_sessions", Int64.Type}, {"purchase_sessions", Int64.Type}, {"view_to_purchase_rate", type number}, {"scenario_extra_purchases", Int64.Type}}, "en-US")
+			in
+				Typed

@@ -1,0 +1,105 @@
+table decision_summary
+
+	measure 'Viewed sessions' = MAX(decision_summary[view_sessions])
+		formatString: #,##0
+
+	measure 'Purchased sessions' = MAX(decision_summary[purchase_sessions])
+		formatString: #,##0
+
+	measure 'Purchase conversion' = MAX(decision_summary[view_to_purchase_rate])
+		formatString: 0.0%
+
+	measure 'Lost before cart' = MAX(decision_summary[largest_loss_sessions])
+		formatString: #,##0
+
+	measure 'Loss before cart rate' = MAX(decision_summary[largest_loss_rate])
+		formatString: 0.0%
+
+	measure 'Channel scenario purchases' = MAX(decision_summary[priority_channel_scenario_purchases])
+		formatString: #,##0
+
+	measure 'Category scenario purchases' = MAX(decision_summary[priority_category_scenario_purchases])
+		formatString: #,##0
+
+	column analysis_start
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: analysis_start
+
+	column analysis_end
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: analysis_end
+
+	column view_sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: view_sessions
+
+	column purchase_sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: purchase_sessions
+
+	column view_to_purchase_rate
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: view_to_purchase_rate
+
+	column largest_loss_stage
+		dataType: string
+		summarizeBy: none
+		sourceColumn: largest_loss_stage
+
+	column largest_loss_sessions
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: largest_loss_sessions
+
+	column largest_loss_rate
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: largest_loss_rate
+
+	column priority_channel
+		dataType: string
+		summarizeBy: none
+		sourceColumn: priority_channel
+
+	column priority_channel_rate
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: priority_channel_rate
+
+	column priority_channel_scenario_purchases
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: priority_channel_scenario_purchases
+
+	column priority_category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: priority_category
+
+	column priority_category_scenario_purchases
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: priority_category_scenario_purchases
+
+	column recommendation
+		dataType: string
+		summarizeBy: none
+		sourceColumn: recommendation
+
+	partition decision_summary = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(#"DataFolder" & "\decision_summary.csv"), [Delimiter=",", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Typed = Table.TransformColumnTypes(Headers, {{"analysis_start", type date}, {"analysis_end", type date}, {"view_sessions", Int64.Type}, {"purchase_sessions", Int64.Type}, {"view_to_purchase_rate", type number}, {"largest_loss_stage", type text}, {"largest_loss_sessions", Int64.Type}, {"largest_loss_rate", type number}, {"priority_channel", type text}, {"priority_channel_rate", type number}, {"priority_channel_scenario_purchases", Int64.Type}, {"priority_category", type text}, {"priority_category_scenario_purchases", Int64.Type}, {"recommendation", type text}}, "en-US")
+			in
+				Typed

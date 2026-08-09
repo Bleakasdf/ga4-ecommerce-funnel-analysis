@@ -1,0 +1,13 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	discourageImplicitMeasures
+
+expression DataFolder = "C:\path\to\ga4-ecommerce-funnel-analysis\data\powerbi" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+ref table decision_summary
+ref table funnel
+ref table weekly_funnel_complete
+ref table channel_opportunity
+ref table category_opportunity

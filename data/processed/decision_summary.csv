@@ -1,0 +1,2 @@
+analysis_start,analysis_end,view_sessions,purchase_sessions,view_to_purchase_rate,largest_loss_stage,largest_loss_sessions,largest_loss_rate,priority_channel,priority_channel_rate,priority_channel_scenario_purchases,priority_category,priority_category_scenario_purchases,recommendation
+2020-11-25,2021-01-31,56696,2668,0.0471,Product view to add to cart,42078,0.7421687597008607,google / organic,0.0399,126,Home/Shop by Brand/YouTube/,40,"Investigate product-detail and add-to-cart friction first, beginning with google / organic sessions and the YouTube and Bags category paths."

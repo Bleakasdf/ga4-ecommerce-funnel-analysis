@@ -1,0 +1,5 @@
+event_name,first_date,last_date,active_days,event_count
+view_item,2020-11-01,2021-01-31,92,386068
+add_to_cart,2020-11-01,2021-01-31,74,58543
+begin_checkout,2020-11-01,2021-01-31,92,38757
+purchase,2020-11-01,2021-01-31,92,5692
