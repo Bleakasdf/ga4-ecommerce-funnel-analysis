@@ -116,6 +116,12 @@ Purchase conversion peaked at 6.79% in the complete week starting 7 December and
 3. Check whether the December-to-January change remains after controlling for product mix and acquisition composition.
 4. Turn the best-supported friction hypothesis into an A/B test with purchase conversion as the primary outcome and checkout errors and revenue per viewed session as guardrails.
 
+## Experiment readiness
+
+The next step is sized rather than left as a generic recommendation. Using the committed 4.71% purchase baseline, a test designed to detect a 10% relative lift requires approximately **33,264 viewed sessions per arm**. At the historical traffic rate, the lower-bound runtime is about **80 days** before enforcing a full-business-cycle rule.
+
+The reproducible sizing, assignment unit, measurement contract, guardrails, and decision rule are documented in [outputs/experiment_plan.md](outputs/experiment_plan.md). This is a launch plan, not a claim that an experiment was run.
+
 ## Limitations
 
 - The public dataset is obfuscated and contains `<Other>` and deleted acquisition values.
@@ -144,7 +150,9 @@ python scripts/build_analysis.py
 python scripts/build_charts.py
 python scripts/build_notebook.py
 python scripts/build_powerbi_project.py
+python scripts/plan_experiment.py
 python scripts/validate_project.py
 ```
 
 Open `powerbi/project/GA4ProductFunnel.pbip` in Power BI Desktop. If the repository was moved, update the `DataFolder` parameter to the absolute `data/powerbi` folder and refresh.
+
